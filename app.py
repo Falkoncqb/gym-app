@@ -125,12 +125,12 @@ def add_alumno():
         
         # Insertar en Supabase
         supabase.table('alumnos').insert({
-            'profesor_id': profesor_id,
+            'profesor_id': int(profesor_id),
             'nombre_completo': nombre,
             'run': run,
             'email': email,
             'telefono': telefono,
-            'valor_plan': valor,
+            'valor_plan': int(valor.replace('.', '').replace(',', '')),
             'fecha_ultimo_pago': fecha
         }).execute()
         
@@ -196,7 +196,7 @@ def update_alumno(id):
             'run': run,
             'email': email,
             'telefono': telefono,
-            'valor_plan': valor,
+            'valor_plan': int(valor.replace('.', '').replace(',', '')),
             'fecha_ultimo_pago': fecha
         }).eq('id', id).execute()
         
