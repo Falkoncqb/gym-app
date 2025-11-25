@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Login Administrador - Gym App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .login-card {
+            max-width: 400px;
+            width: 100%;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-header {
+            background: linear-gradient(45deg, #0d6efd, #0dcaf0);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .login-body {
+            padding: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card login-card">
+        <div class="login-header">
+            <h3 class="mb-0"><i class="fas fa-user-shield me-2"></i>Admin Login</h3>
+        </div>
+        <div class="login-body">
+            {% if error %}
+            <div class="alert alert-danger text-center" role="alert">
+                {{ error }}
+            </div>
+            {% endif %}
+            <form action="{{ url_for('login') }}" method="POST">
+                <div class="mb-4">
+                    <label for="password" class="form-label fw-bold text-muted">Contraseña de Acceso</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-end-0"><i
+                                class="fas fa-lock text-muted"></i></span>
+                        <input type="password" class="form-control border-start-0" id="password" name="password"
+                            placeholder="Ingrese su clave" required>
+                    </div>
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg fw-bold">Ingresar</button>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">Volver al Inicio</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

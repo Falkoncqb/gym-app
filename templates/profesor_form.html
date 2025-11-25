@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>{% if action == 'add' %}Nueva Disciplina{% else %}Editar Disciplina{% endif %} - Gym App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="bg-light">
+
+    <nav class="navbar navbar-dark bg-dark mb-4 shadow">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('admin_dashboard') }}">Gym App Admin</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">{% if action == 'add' %}Nueva Disciplina{% else %}Editar Disciplina{% endif %}
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            <div class="mb-3">
+                                <label for="disciplina" class="form-label">Disciplina</label>
+                                <input type="text" class="form-control" id="disciplina" name="disciplina"
+                                    value="{{ profesor.disciplina if profesor else '' }}" required
+                                    placeholder="Ej: KARATE">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre del Profesor</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre"
+                                    value="{{ profesor.nombre if profesor else '' }}" required
+                                    placeholder="Ej: Sensei Tanaka">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="horario" class="form-label">Horario</label>
+                                <input type="text" class="form-control" id="horario" name="horario"
+                                    value="{{ profesor.horario if profesor else '' }}" required
+                                    placeholder="Ej: Ma-Ju 18:00">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="pago_mensual_gym" class="form-label">Pago Mensual al Gym</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">$</span>
+                                        <input type="number" class="form-control" id="pago_mensual_gym"
+                                            name="pago_mensual_gym"
+                                            value="{{ profesor.pago_mensual_gym if profesor else '' }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="fecha_pago_profe" class="form-label">Fecha de Pago</label>
+                                    <input type="date" class="form-control" id="fecha_pago_profe"
+                                        name="fecha_pago_profe"
+                                        value="{{ profesor.fecha_pago_profe if profesor else '' }}" required>
+                                </div>
+                            </div>
+
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                                <a href="{{ url_for('admin_dashboard') }}"
+                                    class="btn btn-secondary me-md-2">Cancelar</a>
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
